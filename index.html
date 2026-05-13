@@ -5,53 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>单词杂货铺 🧊</title>
 <style>
-  /* 寻找这段代码进行替换 */
   :root {
-    --retro-bg: #F4E8D7; /* 奶油复古背景 */
-    --card-bg: #FFFFFF; /* 白色卡片 */
-    --text-primary: #1A1A1A; 
-    --blue: #84C1D6; /* 莫兰迪蓝 */
-    --green: #89C7A7; /* 莫兰迪绿 */
-    --border-dark: #333333; /* 复古黑色粗边框 */
+    --cream: #F0F7F7;
+    --warm: #E4F2F2;
+    --orange: #2A8A8A;
+    --orange-light: #C8E8E8;
+    --orange-dark: #1A6666;
+    --green: #3A9E8A;
+    --green-light: #D8F0EB;
+    --red: #C05050;
+    --red-light: #FDEAEA;
+    --text: #1A2E2E;
+    --text-muted: #6A8A8A;
+    --border: #C8DEDE;
+    --white: #FAFEFE;
+    --shadow: 0 2px 8px rgba(42,138,138,0.10);
+    --accent2: #4A7FA5;
+    --accent2-light: #D0E8F5;
+    --accent2-dark: #2D5F80;
   }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    background: var(--retro-bg);
-    color: var(--text-primary);
-    font-family: sans-serif;
+    background: var(--cream);
+    font-family: -apple-system, 'Hiragino Sans', 'Noto Sans TC', sans-serif;
+    color: var(--text);
+    min-height: 100vh;
   }
 
-  /* 复古粗边框卡片设计 */
-  .retro-card {
-    background: var(--card-bg);
-    border: 3px solid var(--border-dark);
-    border-radius: 20px;
-    box-shadow: 0 5px 0 var(--border-dark); /* 这种块状阴影最有复古感 */
-    margin: 20px;
-    overflow: hidden;
-  }
-
-  /* 输入框：白底、粗黑边 */
-  .retro-input {
-    width: 90%;
-    padding: 15px;
-    border: 3px solid var(--border-dark);
-    border-radius: 15px;
-    font-size: 18px;
-    text-align: center;
-    outline: none;
-  }
-
-  /* 按钮：莫兰迪绿 */
-  .btn-next {
-    background: var(--green);
-    color: white;
-    border: 3px solid var(--border-dark);
-    padding: 12px 25px;
-    border-radius: 50px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 3px 0 var(--border-dark);
-  }
   /* ── TOP NAV ── */
   .topbar {
     background: var(--orange);
@@ -250,36 +230,31 @@
     transition: width 0.4s;
   }
 
-.word-card {
-  /* 1. 基础背景：使用你刚才在 Root 定义的白色 */
-  background-color: var(--card-bg, #ffffff); 
-  
-  /* 2. 复古灵魂：3像素的黑色实线边框 */
-  border: 3px solid var(--border-dark, #333333); 
-  
-  /* 3. 圆角：20-24像素，让盒子看起来像复古画报一样厚实 */
-  border-radius: 24px; 
-  
-  /* 4. 关键：块状阴影。不要模糊，只要平移。
-     这会让卡片看起来像 image_0.png 里那种悬浮在背景上的感觉 */
-  box-shadow: 6px 6px 0px var(--border-dark, #333333); 
-  
-  /* 5. 间距：给内容留一点呼吸感 */
-  margin: 20px auto;
-  max-width: 400px;
-  overflow: hidden; /* 确保内部图片不会超出这个圆角边框 */
-}
- <div class="word-card-top">
-  <img id="word-img" src="" style="width:100%; height:100%; object-fit:cover; display:block;">
-</div>
+  .word-card {
+    background: var(--white);
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+  .word-card-top {
+    padding: 20px 20px 16px;
+    text-align: center;
+  }
+  .word-pos-badge {
+    display: inline-block;
+    background: var(--orange-light);
+    color: var(--orange-dark);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  .word-cn { font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .word-hint { font-size: 13px; color: var(--text-muted); }
 
-<div class="word-card-info" style="padding: 15px; border-bottom: 2px solid var(--border-dark);">
-  <div style="display: flex; align-items: center; gap: 8px;">
-    <span id="study-pos" style="background: var(--border-dark); color: #fff; padding: 2px 8px; border-radius: 4px; font-weight: bold;"></span>
-    <span id="study-cn" style="font-size: 1.4rem; font-weight: bold; color: var(--border-dark);"></span>
-  </div>
-  <div id="study-hint" style="font-size: 0.9rem; color: #666; margin-top: 5px;"></div>
-</div>
   .image-zone {
     height: 180px;
     background: #D8EEEE;
@@ -627,15 +602,11 @@
   </div>
 
   <div class="word-card">
-   <div class="word-card-top">
-    <!-- 1. 这一行是新加的：复古卡片的图片屏幕 -->
-    <img id="word-img" src="" style="width:100%; height:100%; object-fit:cover;">
-    
-    <!-- 2. 这是你原来的内容，它们现在会浮在图片上或者排在图片周围 -->
-    <div class="word-pos-badge" id="study-pos">n.</div>
-    <div class="word-cn" id="study-cn" style="position: absolute; bottom: 10px; background: rgba(255,255,255,0.8); padding: 2px 8px; border-radius: 5px;">加载中...</div>
-    <div class="word-hint" id="study-hint"></div>
-</div>
+    <div class="word-card-top">
+      <div class="word-pos-badge" id="study-pos">n.</div>
+      <div class="word-cn" id="study-cn">加载中...</div>
+      <div class="word-hint" id="study-hint"></div>
+    </div>
     <div class="image-zone" id="img-zone" onclick="loadImg()">
       <div class="img-placeholder" id="img-placeholder">
         <div class="big-icon">🖼️</div>
@@ -890,15 +861,6 @@ function renderStudy() {
   revealed = false;
   document.getElementById('study-pos').textContent = w.pos;
   document.getElementById('study-cn').textContent = w.cn;
-  
-  // ⬇️ 这一段是新加的：让图片显示出来的核心代码 ⬇️
-  const wordImg = document.getElementById('word-img');
-  if (wordImg) {
-    // 根据单词生成对应的图片地址
-    wordImg.src = "https://picsum.photos/seed/" + w.en + "/500/400";
-    wordImg.style.display = "block"; 
-  }
-  
   document.getElementById('study-hint').textContent = '';
   document.getElementById('study-input').value = '';
   document.getElementById('study-input').disabled = false;
@@ -907,6 +869,7 @@ function renderStudy() {
   document.getElementById('action-row').style.display = 'none';
   document.getElementById('study-progress-label').textContent = (currentIdx + 1) + ' / ' + currentWords.length;
   document.getElementById('study-score-label').textContent = '✓ ' + correctCount + '  ✗ ' + wrongCount;
+  document.getElementById('study-progress-fill').style.width = Math.round(currentIdx / currentWords.length * 100) + '%';
 
   const imgEl = document.getElementById('study-img');
   const ph = document.getElementById('img-placeholder');
@@ -927,37 +890,48 @@ function renderStudy() {
 }
 
 async function loadImg() {
+  // 1. 获取当前单词
   const w = currentWords[currentIdx];
   if (imgCache[w.en]) return;
+
+  // 2. 显示加载状态
   const ph = document.getElementById('img-placeholder');
   const ld = document.getElementById('img-loading');
   const imgEl = document.getElementById('study-img');
   const zone = document.getElementById('img-zone');
+
   ph.style.display = 'none';
   ld.style.display = 'flex';
   zone.onclick = null;
 
   try {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({
-        model:"claude-sonnet-4-20250514",
-        max_tokens:100,
-        messages:[{ role:"user", content:`Give me a 4-6 word Unsplash search query to illustrate the English word "${w.en}" meaning "${w.cn}". Reply with ONLY the query, no punctuation.` }]
-      })
-    });
-    const data = await res.json();
-    const q = data.content[0].text.trim();
-    const url = `https://source.unsplash.com/400x280/?${encodeURIComponent(q)}`;
-    imgCache[w.en] = url;
-    imgEl.src = url;
-    imgEl.onload = () => { ld.style.display = 'none'; imgEl.style.display = 'block'; };
-    imgEl.onerror = () => { ld.style.display = 'none'; ph.style.display = 'flex'; ph.querySelector('span').textContent = '图片加载失败'; zone.onclick = loadImg; };
-  } catch(e) {
+    // 3. 改用免费图标API加载对应图片
+    const imgUrl = `https://img.icons8.com/fluency/200/${w.en}.png`;
+    
+    // 预加载图片
+    const testImg = new Image();
+    testImg.onload = () => {
+      imgEl.src = imgUrl;
+      imgEl.alt = w.en;
+      imgEl.style.display = 'block';
+      imgCache[w.en] = true;
+      ld.style.display = 'none';
+    };
+    testImg.onerror = () => {
+      // 找不到对应图片时，显示默认问号图
+      imgEl.src = "https://img.icons8.com/fluency/200/question-mark.png";
+      imgEl.alt = "no image";
+      imgEl.style.display = 'block';
+      imgCache[w.en] = true;
+      ld.style.display = 'none';
+    };
+    testImg.src = imgUrl;
+
+  } catch (err) {
+    console.error('图片加载失败', err);
+    // 出错时恢复状态
     ld.style.display = 'none';
     ph.style.display = 'flex';
-    ph.querySelector('span').textContent = '点击重试';
     zone.onclick = loadImg;
   }
 }
